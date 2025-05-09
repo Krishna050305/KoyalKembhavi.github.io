@@ -8,6 +8,41 @@
     <link rel="stylesheet" href=" ./autumn.css" />
 
 </head>
+    <script>
+    
+    const sections = document.querySelectorAll('.image');
+  
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target); 
+         }
+      });
+    }, {
+      threshold: 0.2
+    });
+  
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+  </script>
+  <script>
+   
+    const images = document.querySelectorAll('.image');
+  
+    const revealOnScroll = () => {
+      images.forEach(img => {
+        const rect = img.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          img.classList.add('reveal');
+        }
+      });
+    };
+  
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll); // run on page load
+  </script>
 
 <body>
     <div id="top"></div>
